@@ -10,6 +10,7 @@ curl -sfL https://get.k3s.io | sh -s - --disable traefik
 Create `~/.kube/config` symlink
 
 ```
+mkdir ~/.kube
 sudo ln -s /etc/rancher/k3s/k3s.yaml ~/.kube/config
 ```
 
