@@ -16,3 +16,11 @@
 *.local.yaml
 *.local.json
 *.local.txt
+tmp
+
+# SLKP
+*-state
+
+# Kubernetes
+kubeconfig.yml
+kubeconfig.yaml

@@ -1,0 +1,58 @@
+meta:
+  version: 1
+
+ssh:
+  user: root
+
+global:
+  os: "debian-12"
+  archive_server:
+    enabled: false
+  private_registry:
+    enabled: false
+  oidc_issuer_url: "https://sso.sikalabs.com/realms/training"
+  oidc_client_id: "example_client_id"
+proxy:
+  enabled: true
+  master_hosts:
+    - slkp.sikademo.com
+  api_backends:
+    - slkp-ma-0.sikademo.com
+    - slkp-ma-1.sikademo.com
+    - slkp-ma-2.sikademo.com
+  apps_backends:
+    - slkp-wo-0.sikademo.com
+    - slkp-wo-1.sikademo.com
+    - slkp-wo-2.sikademo.com
+  high_availability:
+    enabled: false
+
+# RKE2 installation configuration
+rke2:
+  enabled: true
+  api_domain: api.slkp.sikademo.com
+  cni: canal
+  host_as_node_name: false
+  # Master1 host
+  master1: slkp-ma-0.sikademo.com
+  masters:
+    - slkp-ma-1.sikademo.com
+    - slkp-ma-2.sikademo.com
+  workers:
+    - slkp-wo-0.sikademo.com
+    - slkp-wo-1.sikademo.com
+    - slkp-wo-2.sikademo.com
+
+  cluster_token: Ps7s_MFKr_aGIC_pQKg
+
+  cluster_name: ica-slkp
+  service_cidr: 10.243.0.0/16
+  cluster_cidr: 10.242.0.0/16
+  workload_on_master: false
+  audit_log_enabled: true
+
+helm_ingress_nginx:
+  enabled: true
+
+helm_cert_manager:
+  enabled: true
